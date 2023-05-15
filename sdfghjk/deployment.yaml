@@ -1,20 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: notes-app
+  labels:
+    app: notes
+  name: notes
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: notes-app
+      app: notes
+  strategy: {}
   template:
     metadata:
       labels:
-        app: notes-app
+        app: notes
     spec:
       containers:
-      - name: notes-app
-        image: s160621/django_app:latest
-        ports:
+      - image:  s160621/django_app:latest
+        name:  notes
+        imagePullPolicy: Always
+        ports: 
         - containerPort: 80
-
